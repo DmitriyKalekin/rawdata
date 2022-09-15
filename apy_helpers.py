@@ -34,7 +34,7 @@ import json
 con = mysql.connector.connect(user='apyreader', password='SimpleReader42!',
                               host='94.130.228.49', database='apy',
                               auth_plugin='mysql_native_password')
-dbcon = sqlalchemy.create_engine('mysql+mysqlconnector://apyreader:SimpleReader42!@127.0.0.1/apy')
+dbcon = sqlalchemy.create_engine('mysql+mysqlconnector://apyreader:SimpleReader42!@94.130.228.49/apy')
 
 
 def plot_apy_tvl(df, dfp, corr_pools):
