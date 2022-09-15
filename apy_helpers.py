@@ -29,8 +29,8 @@ mpl.rcParams['image.cmap'] = 'Accent'
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 import json
 from scipy.special import comb
-mpl.rcParams['figure.figsize'] = (12, 12)
-plt.rcParams['figure.figsize'] = (12, 12)
+# mpl.rcParams['figure.figsize'] = (12, 12)
+# plt.rcParams['figure.figsize'] = (12, 12)
 
 
 # mysql -h 94.130.228.49 -u apyreader -pSimpleReader42!
