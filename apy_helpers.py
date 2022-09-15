@@ -138,7 +138,7 @@ def calc_regression(df, dfp):
     pools = [c for c in df1.index.tolist()]
     for pool in pools:
         cond = df1.index == pool
-        dfi = dfp.loc[pool].iloc[-FROM:]  #.loc  [dfp.index[-FROM:], [col, des]]
+        dfi = dfp.loc[pool].iloc[-FROM:].copy()  #.loc  [dfp.index[-FROM:], [col, des]]
         d = json.loads(df1.loc[cond, "w_json"].values[0])
         # Это наши фичи, по которым считаем модельное значение и еще "единички" - intercept
         cols = ["tvl", "1/tvl", "log.tvl", "tvl2", "1/tvl2", "1/log.tvl"]
