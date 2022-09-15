@@ -29,6 +29,8 @@ mpl.rcParams['image.cmap'] = 'Accent'
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 import json
 from scipy.special import comb
+mpl.rcParams['figure.figsize'] = (15, 15)
+plt.rcParams['figure.figsize'] = (15, 15)
 
 
 # mysql -h 94.130.228.49 -u apyreader -pSimpleReader42!
@@ -41,7 +43,7 @@ dbcon = sqlalchemy.create_engine('mysql+mysqlconnector://apyreader:SimpleReader4
 def plot_apy_tvl(df, dfp, corr_pools):
     cmap = mpl.cm.get_cmap('Paired')
 
-    fig, axs = plt.subplots(ncols=2, nrows=2, figsize=(12, 12))
+    fig, axs = plt.subplots(ncols=2, nrows=2, figsize=(15, 15))
     axs = axs.flatten()
     for i, pool in enumerate(df[df.index.isin(corr_pools)].index.values):
         dfl = df[df.index == pool]
@@ -60,7 +62,7 @@ def plot_apy_tvl(df, dfp, corr_pools):
 
 def corr_distribution(df):
     cmap = mpl.cm.get_cmap('Paired')
-    fig = plt.figure(figsize=(8,5))
+    fig = plt.figure(figsize=(15,15))
     ax1 = fig.add_subplot(121)
     df[df["corr14"].notna()]["corr14"].hist(ax=ax1, bins=20, grid=True, color=cmap(0))
     df[df["corr14"].notna()]["corr14"].plot.kde(ax=ax1, secondary_y=True, title="kde", grid=True, color=cmap(7))
@@ -213,11 +215,12 @@ def simulate(df, amount, label):
             break
 
     # dfi["win"] = df[label] * dfi["amount"] / 365 / 100 * 14
+    dfi["amount"] = dfi["amount"].round()
     dfi["asset"] = dfi["win"] * dfi["apyBase"] / dfi["apy"]
     dfi["der"] = dfi["win"] * dfi["apyReward"] / dfi["apy"]
     dfi["asset"] = dfi["asset"].fillna(0)
     dfi["der"] = dfi["der"].fillna(0)
-    dfi["win"] = dfi["asset"] + dfi["der"]
+    dfi["win"] = (dfi["asset"] + dfi["der"]).round()
     dfi["emp.risk.win"] = dfi["trust"] * (1 - dfi["hacker_risk"]) * (dfi["amount"] + dfi["win"]) + (1 - dfi["trust"] * (1 - dfi["hacker_risk"]))*(-dfi["amount"])
 
 
