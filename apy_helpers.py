@@ -29,8 +29,8 @@ mpl.rcParams['image.cmap'] = 'Accent'
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 import json
 from scipy.special import comb
-mpl.rcParams['figure.figsize'] = (15, 15)
-plt.rcParams['figure.figsize'] = (15, 15)
+mpl.rcParams['figure.figsize'] = (12, 12)
+plt.rcParams['figure.figsize'] = (12, 12)
 
 
 # mysql -h 94.130.228.49 -u apyreader -pSimpleReader42!
@@ -62,7 +62,7 @@ def plot_apy_tvl(df, dfp, corr_pools):
 
 def corr_distribution(df):
     cmap = mpl.cm.get_cmap('Paired')
-    fig = plt.figure(figsize=(15,15))
+    fig = plt.figure(figsize=(12,12))
     ax1 = fig.add_subplot(121)
     df[df["corr14"].notna()]["corr14"].hist(ax=ax1, bins=20, grid=True, color=cmap(0))
     df[df["corr14"].notna()]["corr14"].plot.kde(ax=ax1, secondary_y=True, title="kde", grid=True, color=cmap(7))
