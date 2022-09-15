@@ -28,6 +28,7 @@ import matplotlib as mpl
 mpl.rcParams['image.cmap'] = 'Accent'
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 import json
+from scipy.special import comb
 
 
 # mysql -h 94.130.228.49 -u apyreader -pSimpleReader42!
@@ -114,7 +115,7 @@ def calc_hacker_risk(df, dfs):
     for i, row in dfs.iterrows():
         project = i[0]
         p = row["cnt"]
-        df.loc[df.project==project, "hacker_risk"] = (1 - math.comb(int(t-p), b) / math.comb(t, b))
+        df.loc[df.project==project, "hacker_risk"] = (1 - comb(int(t-p), b) / comb(t, b))
     return df
 
 
